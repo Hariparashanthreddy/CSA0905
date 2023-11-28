@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class NumberOfFactors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number: ");
+        int givenNumber = scanner.nextInt();
+
+        int numberOfFactors = countFactors(givenNumber);
+
+        System.out.println("Number of factors for " + givenNumber + " = " + numberOfFactors);
+
+        scanner.close();
+    }
+
+    // Function to count the number of factors for a given number
+    static int countFactors(int number) {
+        int count = 0;
+        for (int i = 1; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                // If the divisor is the same, count it only once (e.g., for perfect squares)
+                if (number / i == i) {
+                    count++;
+                } else {
+                    count += 2;
+                }
+            }
+        }
+        return count;
+    }
+}
