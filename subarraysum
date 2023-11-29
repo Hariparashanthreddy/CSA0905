@@ -1,0 +1,30 @@
+public class MaximumSubarraySum {
+    public static void main(String[] args) {
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+        int maxSubarraySum = findMaxSubarraySum(nums);
+
+        System.out.println("The maximum subarray sum is: " + maxSubarraySum);
+    }
+
+    // Function to find the maximum subarray sum using Kadane's algorithm
+    static int findMaxSubarraySum(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int currentSum = nums[0];
+        int maxSum = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            // Compare current element with the sum of the current subarray
+            // If the current element is greater, start a new subarray
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+
+            // Update the maximum sum if the current subarray sum is greater
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+}
